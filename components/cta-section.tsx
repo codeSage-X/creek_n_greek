@@ -17,11 +17,11 @@ export function CTASection() {
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </a>
-          <Link href="/events">
+          <a href="/events">
             <Button size="lg" variant="outline">
               View Upcoming Events
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

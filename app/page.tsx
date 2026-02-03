@@ -1,16 +1,24 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { FeaturesSection } from "@/components/features-section"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Star } from "lucide-react"
 
 export default function Home() {
   const router = useRouter()
   const rootRef = useRef<HTMLElement | null>(null)
+  const [reviews, setReviews] = useState<any[]>([])
+  const [loadingReviews, setLoadingReviews] = useState(true)
+  const [currentPage, setCurrentPage] = useState(0)
+
+   const reviewsContainerRef = useRef<HTMLDivElement>(null)
 
   // Kill ScrollTrigger on route change
   useEffect(() => {
@@ -88,6 +96,42 @@ export default function Home() {
     }
   }, [])
 
+  // Fetch reviews from Google Sheets
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch('/api/reviews')
+        const data = await res.json()
+        setReviews(data || [])
+      } catch (err) {
+        console.error('Failed to fetch reviews', err)
+      } finally {
+        setLoadingReviews(false)
+      }
+    }
+
+    fetchReviews()
+  }, [])
+
+  useEffect(() => {
+  if (!reviewsContainerRef.current) return
+
+  const reviewCards = reviewsContainerRef.current.querySelectorAll('.review-card')
+
+  // GSAP animation: fade + slide up
+  gsap.fromTo(
+    reviewCards,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: 'power3.out',
+    }
+  )
+}, [currentPage, reviews])
+
   return (
     <main ref={rootRef} className="overflow-x-hidden">
       <Navbar />
@@ -120,6 +164,64 @@ export default function Home() {
         </div>
       </section>
       <FeaturesSection />
+      <section className="py-24 bg-muted/20 animate-onscroll">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-serif font-bold mb-4">What People Are Saying</h2>
+      <p className="text-foreground/70 font-light">See the experiences our guests have shared</p>
+    </div>
+
+    {loadingReviews ? (
+      <p className="text-center text-foreground/60">Loading reviews...</p>
+    ) : reviews.length === 0 ? (
+      <p className="text-center text-foreground/60">No reviews yet. Be the first to leave one!</p>
+    ) : (
+      <>
+        {/* Paginated Reviews */}
+<div ref={reviewsContainerRef} className="grid md:grid-cols-3 gap-8">
+  {reviews
+    .slice(currentPage * 6, currentPage * 6 + 6)
+    .map((review, index) => (
+      <Card key={index} className="p-6 border border-border hover:border-foreground/50 transition-colors review-card">
+        <div className="flex items-center mb-4">
+          <span className="font-semibold mr-2">{review.name}</span>
+          <div className="flex">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star
+                key={i}
+                className={`h-5 w-5 ${i < review.stars ? 'text-yellow-400' : 'text-foreground/50'}`}
+              />
+            ))}
+          </div>
+        </div>
+        <p className="text-foreground/70">{review.feedback}</p>
+      </Card>
+    ))}
+</div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-8 gap-4">
+          <Button
+            disabled={currentPage === 0}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            Previous
+          </Button>
+          <span className="flex items-center text-foreground/70">
+            Page {currentPage + 1} of {Math.ceil(reviews.length / 6)}
+          </span>
+          <Button
+            disabled={currentPage >= Math.ceil(reviews.length / 6) - 1}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            Next
+          </Button>
+        </div>
+      </>
+    )}
+  </div>
+</section>
+
       <CTASection />
       <Footer />
     </main>

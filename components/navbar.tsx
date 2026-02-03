@@ -32,6 +32,7 @@ export function Navbar() {
     { href: "/menu", label: "Menu" },
     { href: "/events", label: "Events" },
     { href: "/contact", label: "Contact" },
+    { href: "/review", label: "write us a review" },
   ]
 
   return (

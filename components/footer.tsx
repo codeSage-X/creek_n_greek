@@ -1,4 +1,4 @@
-import { Instagram, MapPin, Phone } from "lucide-react"
+import { Instagram, MapPin, MessageCircle, Phone } from "lucide-react"
 
 export function Footer() {
   return (
@@ -81,7 +81,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-foreground/70 hover:text-primary transition-colors text-sm font-medium"
               >
-                WhatsApp
+                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>

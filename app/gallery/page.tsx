@@ -7,21 +7,27 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
 const galleryImages = [
-  { id: 1, category: "pool", src: "/luxury-swimming-pool-resort.jpg", alt: "Poolside Area" },
-  { id: 2, category: "rooftop", src: "/rooftop-lounge-night.jpg", alt: "Rooftop Lounge" },
-  { id: 3, category: "events", src: "/elegant-event-venue-wedding.jpg", alt: "Event Venue" },
-  { id: 4, category: "dining", src: "/fine-dining-restaurant-luxury.jpg", alt: "Fine Dining" },
-  { id: 5, category: "pool", src: "/infinity-pool-resort.jpg", alt: "Swimming Pool" },
-  { id: 6, category: "events", src: "/wedding-reception-elegant.jpg", alt: "Wedding Event" },
-  { id: 7, category: "rooftop", src: "/rooftop-bar-cocktails.jpg", alt: "Rooftop Bar" },
-  { id: 8, category: "dining", src: "/cocktail-bar-lounge.jpg", alt: "Bar & Lounge" },
-  { id: 9, category: "pool", src: "/resort-courtyard-tropical.jpg", alt: "Resort Courtyard" },
-  { id: 10, category: "events", src: "/conference-event-hall.jpg", alt: "Conference Hall" },
-  { id: 11, category: "rooftop", src: "/sunset-rooftop-city-view.jpg", alt: "Sunset View" },
-  { id: 12, category: "dining", src: "/gourmet-chef-kitchen.jpg", alt: "Chef Kitchen" },
+  { id: 1, category: "pool", src: "/pool4.png", alt: "Poolside Area" },
+  { id: 2, category: "rooftop", src: "/rooftop5.png", alt: "Rooftop" },
+  { id: 3, category: "pool", src: "/pool3.png", alt: "Swimming Pool" },
+  { id: 4, category: "rooftop", src: "/rooftop3.png", alt: "Rooftop Bar" },
+  { id: 5, category: "pool", src: "/pool2.png", alt: "Pool Area" },
+  { id: 6, category: "pool", src: "/pool.png", alt: "Pool Area" },
+  { id: 7, category: "pool", src: "/pool5.png", alt: "Pool Area" },
+  { id: 8, category: "pool", src: "/pool6.png", alt: "Pool Area" },
+  { id: 9, category: "rooftop", src: "/rooftop2.png", alt: "Roof Top" },
+  { id: 10, category: "rooftop", src: "/rooftop.png", alt: "Roof Top" },
+  { id: 11, category: "rooftop", src: "/rooftop4.png", alt: "Roof Top" },
+  { id: 12, category: "rooftop", src: "/rooftop6.png", alt: "Roof Top" },
+  { id: 13, category: "ambiance", src: "/ambiance.png", alt: "Enviroment" },
+  { id: 14, category: "ambiance", src: "/ambiance2.png", alt: "Enviroment" },
+  { id: 15, category: "ambiance", src: "/ambiance3.png", alt: "Enviroment" },
+  { id: 16, category: "ambiance", src: "/ambiance4.png", alt: "Enviroment" },
+  { id: 17, category: "ambiance", src: "/ambiance6.png", alt: "Enviroment" },
+  { id: 18, category: "ambiance", src: "/ambiance5.png", alt: "Enviroment" },
 ]
 
-const categories = ["all", "pool", "rooftop", "events", "dining"]
+const categories = ["all", "ambiance", "rooftop", "pool"]
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("all")
