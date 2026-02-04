@@ -69,8 +69,8 @@ const toggleSound = () => {
           onMouseLeave={() => setActiveHover(null)}
         >
           {/* Creek Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-amber-900/60 via-black/50 to-black/70 transition-opacity duration-500 ${
-            activeHover === "creek" ? "opacity-90" : "opacity-70"
+          <div className={`absolute inset-0 bg-gradient-to-br from-amber-900/60 transition-opacity duration-500 ${
+            activeHover === "creek" ? "opacity-20" : "opacity-0"
           }`} />
           
           {/* Creek Content */}
@@ -110,13 +110,13 @@ const toggleSound = () => {
         </div>
 
         {/* Center Divider - Desktop */}
-        <div className="hidden lg:flex items-center justify-center relative z-20">
+        <div className="hidden lg:flex items-center justify-center relative z-20 opacity-40">
           <div className="divider-line w-px h-[60%] bg-gradient-to-b from-transparent via-white/50 to-transparent origin-center" />
           <div className="absolute w-3 h-3 rounded-full bg-white/80 shadow-lg shadow-white/30" />
         </div>
 
         {/* Mobile Divider */}
-        <div className="lg:hidden flex items-center justify-center py-4 relative z-20">
+        <div className="lg:hidden flex items-center justify-center py-4 relative z-20 opacity-0">
           <div className="w-[60%] h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
           <div className="absolute w-2 h-2 rounded-full bg-white/80" />
         </div>
@@ -130,8 +130,8 @@ const toggleSound = () => {
           onMouseLeave={() => setActiveHover(null)}
         >
           {/* Imperial Overlay - Darker, more elegant */}
-          <div className={`absolute inset-0 bg-gradient-to-bl from-neutral-900/80 via-black/70 to-black/80 transition-opacity duration-500 ${
-            activeHover === "imperial" ? "opacity-95" : "opacity-80"
+          <div className={`absolute inset-0 bg-gradient-to-bl from-neutral-900/80 via-black/90 to-black/90 transition-opacity duration-500 ${
+            activeHover === "imperial" ? "opacity-20" : "opacity-0"
           }`} />
           
           {/* Imperial Content */}

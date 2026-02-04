@@ -107,7 +107,7 @@ export default function Events() {
       {/* ---------------- HERO ---------------- */}
       <section className="pt-28 pb-20 bg-gradient-to-b from-card to-background text-center">
         <h1 className="text-5xl md:text-6xl font-serif font-light mb-4">
-          Upcoming Events
+          Previous Events
         </h1>
         <p className="text-lg text-foreground/70">
           Join us for unforgettable evenings filled with luxury and entertainment
