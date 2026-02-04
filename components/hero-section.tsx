@@ -138,7 +138,7 @@ const toggleSound = () => {
           <div className="imperial-content relative z-10 text-center flex flex-col items-center py-16 lg:py-0">
             {/* Logo */}
             <a 
-              href="/https://greek-imperial.vercel.app" 
+              href="https://greek-imperial.vercel.app" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`mb-6 transition-transform duration-500 cursor-pointer ${activeHover === "imperial" ? "scale-110" : ""}`}
