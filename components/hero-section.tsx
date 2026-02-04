@@ -164,7 +164,7 @@ const toggleSound = () => {
 
             {/* CTA - Black & White Theme */}
             <a 
-              href="/imperial" 
+              href="https://greek-imperial.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
             >
