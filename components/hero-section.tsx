@@ -51,7 +51,7 @@ const toggleSound = () => {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-40"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
         src="/vid.mp4"
       />
 
@@ -136,7 +136,7 @@ const toggleSound = () => {
           <div className="imperial-content relative z-10 text-center flex flex-col items-center py-16 lg:py-0">
             {/* Logo */}
             <a 
-              href="/imperial" 
+              href="/https://greek-imperial.vercel.app" 
               target="_blank" 
               rel="noopener noreferrer"
               className={`mb-6 transition-transform duration-500 cursor-pointer ${activeHover === "imperial" ? "scale-110" : ""}`}
