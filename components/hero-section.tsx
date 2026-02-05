@@ -77,10 +77,10 @@ export function HeroSection() {
               <Image
                 src="/images/cg-official-logo-scaled.png"
                 alt="Creek'n'Greek Luxury Resorts Logo"
-                width={140}
-                height={140}
+                width={160}
+                height={160}
                 priority
-                className="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 object-contain drop-shadow-2xl"
+                className="w-30 h-30 sm:w-30 sm:h-30 md:w-28 md:h-28 lg:w-36 lg:h-36 object-cover drop-shadow-2xl"
               />
             </div>
 
@@ -88,7 +88,7 @@ export function HeroSection() {
             <h1 className="text-base sm:text-2xl md:text-4xl lg:text-6xl font-serif font-light tracking-wide mb-1 text-white drop-shadow-lg">
               Creek&apos;n&apos;Greek
             </h1>
-            <p className="text-[10px] sm:text-sm md:text-lg lg:text-xl text-amber-400 font-serif tracking-[0.1em] sm:tracking-[0.2em] mb-1 drop-shadow-md">
+            <p className="text-[10px] sm:text-sm md:text-lg lg:text-xl text-[#ffffff] font-serif tracking-[0.1em] sm:tracking-[0.2em] mb-1 drop-shadow-md">
               LUXURY RESORTS
             </p>
             <p className="text-[8px] sm:text-xs text-white/60 tracking-wider sm:tracking-widest mb-3 sm:mb-6 lg:mb-8 hidden sm:block">
@@ -140,7 +140,7 @@ export function HeroSection() {
                 width={160}
                 height={160}
                 priority
-                className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-2xl hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300"
+                className="w-30 h-30 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover drop-shadow-2xl hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300"
               />
             </a>
 
