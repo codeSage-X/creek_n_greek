@@ -48,7 +48,7 @@ export function HeroSection() {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"  
         poster="/video-poster.png"
         className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
         src="/vid.mp4"
