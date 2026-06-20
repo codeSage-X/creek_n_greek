@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
@@ -447,6 +448,30 @@ const menuCategories = [
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 4)
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+  }, [])
+
+  const scrollBy = (dir: "left" | "right") => {
+    const el = scrollRef.current
+    if (!el) return
+    el.scrollBy({ left: dir === "left" ? -220 : 220, behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    updateScrollState()
+    el.addEventListener("scroll", updateScrollState, { passive: true })
+    return () => el.removeEventListener("scroll", updateScrollState)
+  }, [updateScrollState])
 
   useEffect(() => {
     setMounted(true)
@@ -521,20 +546,47 @@ export default function Menu() {
         <section className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Category Navigation */}
-            <div className="flex flex-wrap gap-3 justify-center mb-16">
-              {menuCategories.map((category, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedCategory(index)}
-                  className={`px-4 py-2 rounded-full transition-all duration-300 font-medium text-sm ${
-                    selectedCategory === index
-                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
-                      : "bg-card text-foreground/70 hover:text-foreground border border-border"
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
+            <div className="relative -mx-4 sm:mx-0 mb-16">
+              {/* Left caret — mobile only */}
+              <button
+                onClick={() => scrollBy("left")}
+                aria-label="Scroll left"
+                className={`sm:hidden absolute left-0 top-0 bottom-3 z-10 flex items-center px-1 transition-opacity duration-200 ${canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              >
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-background/80 backdrop-blur border border-border shadow">
+                  <ChevronLeft className="w-4 h-4 text-primary" />
+                </span>
+              </button>
+
+              <div
+                ref={scrollRef}
+                className="flex gap-3 overflow-x-auto px-8 pb-3 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-x-visible sm:pb-0 sm:px-0"
+              >
+                {menuCategories.map((category, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedCategory(index)}
+                    className={`flex-shrink-0 px-4 py-2 rounded-full transition-all duration-300 font-medium text-sm ${
+                      selectedCategory === index
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                        : "bg-card text-foreground/70 hover:text-foreground border border-border"
+                    }`}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Right caret — mobile only */}
+              <button
+                onClick={() => scrollBy("right")}
+                aria-label="Scroll right"
+                className={`sm:hidden absolute right-0 top-0 bottom-3 z-10 flex items-center px-1 transition-opacity duration-200 ${canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              >
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-background/80 backdrop-blur border border-border shadow">
+                  <ChevronRight className="w-4 h-4 text-primary" />
+                </span>
+              </button>
             </div>
 
             {/* Category Title */}
